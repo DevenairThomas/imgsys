@@ -1,0 +1,13 @@
+caption_min_conf: 0.60
+tag_threshold: 0.35
+topk_tags: 10
+ocr_boost:
+  enabled: true
+  min_len: 3
+flags:
+  - low_confidence_caption
+  - conflicting_tags
+  - nsfw_maybe
+  - ocr_contains_entities
+  - decode_error
+  - ai_generated_maybe

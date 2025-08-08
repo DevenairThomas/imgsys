@@ -1,0 +1,850 @@
+{
+  "$defs": {
+    "Audit": {
+      "properties": {
+        "toolchain": {
+          "additionalProperties": true,
+          "title": "Toolchain",
+          "type": "object"
+        },
+        "last_modified": {
+          "title": "Last Modified",
+          "type": "string"
+        }
+      },
+      "required": [
+        "last_modified"
+      ],
+      "title": "Audit",
+      "type": "object"
+    },
+    "FinalFields": {
+      "properties": {
+        "caption": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Caption"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "entities": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Entities",
+          "type": "array"
+        },
+        "locales": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Locales",
+          "type": "array"
+        }
+      },
+      "title": "FinalFields",
+      "type": "object"
+    },
+    "Fingerprint": {
+      "properties": {
+        "size": {
+          "title": "Size",
+          "type": "integer"
+        },
+        "mtime": {
+          "title": "Mtime",
+          "type": "string"
+        },
+        "sha256_head": {
+          "title": "Sha256 Head",
+          "type": "string"
+        }
+      },
+      "required": [
+        "size",
+        "mtime",
+        "sha256_head"
+      ],
+      "title": "Fingerprint",
+      "type": "object"
+    },
+    "Fusion": {
+      "properties": {
+        "policy_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Policy Version"
+        },
+        "decisions": {
+          "additionalProperties": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "title": "Decisions",
+          "type": "object"
+        }
+      },
+      "title": "Fusion",
+      "type": "object"
+    },
+    "IngestInfo": {
+      "properties": {
+        "filesize": {
+          "title": "Filesize",
+          "type": "integer"
+        },
+        "width": {
+          "title": "Width",
+          "type": "integer"
+        },
+        "height": {
+          "title": "Height",
+          "type": "integer"
+        },
+        "format": {
+          "title": "Format",
+          "type": "string"
+        },
+        "mode": {
+          "title": "Mode",
+          "type": "string"
+        },
+        "exif": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Exif"
+        },
+        "checksum": {
+          "title": "Checksum",
+          "type": "string"
+        },
+        "fingerprint": {
+          "$ref": "#/$defs/Fingerprint"
+        },
+        "discovered_at": {
+          "title": "Discovered At",
+          "type": "string"
+        },
+        "source": {
+          "additionalProperties": true,
+          "title": "Source",
+          "type": "object"
+        }
+      },
+      "required": [
+        "filesize",
+        "width",
+        "height",
+        "format",
+        "mode",
+        "checksum",
+        "fingerprint",
+        "discovered_at"
+      ],
+      "title": "IngestInfo",
+      "type": "object"
+    },
+    "ModelCaption": {
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Version"
+        },
+        "run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Run Id"
+        },
+        "output": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Output"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        }
+      },
+      "title": "ModelCaption",
+      "type": "object"
+    },
+    "ModelFaces": {
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Version"
+        },
+        "run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Run Id"
+        },
+        "num_faces": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Num Faces"
+        },
+        "embeddings": {
+          "anyOf": [
+            {
+              "items": {
+                "items": {
+                  "type": "number"
+                },
+                "type": "array"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Embeddings"
+        }
+      },
+      "title": "ModelFaces",
+      "type": "object"
+    },
+    "ModelNSFW": {
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Version"
+        },
+        "run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Run Id"
+        },
+        "score": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Score"
+        },
+        "class": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Class"
+        }
+      },
+      "title": "ModelNSFW",
+      "type": "object"
+    },
+    "ModelOCR": {
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Version"
+        },
+        "run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Run Id"
+        },
+        "text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Text"
+        },
+        "blocks": {
+          "anyOf": [
+            {
+              "items": {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Blocks"
+        }
+      },
+      "title": "ModelOCR",
+      "type": "object"
+    },
+    "ModelPlaces": {
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Version"
+        },
+        "run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Run Id"
+        },
+        "topk": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Topk",
+          "type": "array"
+        }
+      },
+      "title": "ModelPlaces",
+      "type": "object"
+    },
+    "ModelStyle": {
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Version"
+        },
+        "run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Run Id"
+        },
+        "anime_score": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Anime Score"
+        },
+        "art_style": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Art Style"
+        }
+      },
+      "title": "ModelStyle",
+      "type": "object"
+    },
+    "ModelTags": {
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Version"
+        },
+        "run_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Run Id"
+        },
+        "labels": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Labels",
+          "type": "array"
+        }
+      },
+      "title": "ModelTags",
+      "type": "object"
+    },
+    "Models": {
+      "properties": {
+        "caption": {
+          "$ref": "#/$defs/ModelCaption",
+          "default": {
+            "name": null,
+            "version": null,
+            "run_id": null,
+            "output": null,
+            "confidence": null
+          }
+        },
+        "tags": {
+          "$ref": "#/$defs/ModelTags",
+          "default": {
+            "name": null,
+            "version": null,
+            "run_id": null,
+            "labels": []
+          }
+        },
+        "nsfw": {
+          "$ref": "#/$defs/ModelNSFW",
+          "default": {
+            "name": null,
+            "version": null,
+            "run_id": null,
+            "score": null,
+            "class": null
+          }
+        },
+        "ocr": {
+          "$ref": "#/$defs/ModelOCR",
+          "default": {
+            "name": null,
+            "version": null,
+            "run_id": null,
+            "text": null,
+            "blocks": null
+          }
+        },
+        "style": {
+          "$ref": "#/$defs/ModelStyle",
+          "default": {
+            "name": null,
+            "version": null,
+            "run_id": null,
+            "anime_score": null,
+            "art_style": null
+          }
+        },
+        "places": {
+          "$ref": "#/$defs/ModelPlaces",
+          "default": {
+            "name": null,
+            "version": null,
+            "run_id": null,
+            "topk": []
+          }
+        },
+        "faces": {
+          "$ref": "#/$defs/ModelFaces",
+          "default": {
+            "name": null,
+            "version": null,
+            "run_id": null,
+            "num_faces": null,
+            "embeddings": null
+          }
+        }
+      },
+      "title": "Models",
+      "type": "object"
+    },
+    "Review": {
+      "properties": {
+        "status": {
+          "default": "auto_ok",
+          "title": "Status",
+          "type": "string"
+        },
+        "flags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Flags",
+          "type": "array"
+        },
+        "notes": {
+          "default": "",
+          "title": "Notes",
+          "type": "string"
+        },
+        "history": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "History",
+          "type": "array"
+        },
+        "gold_labels": {
+          "anyOf": [
+            {},
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Gold Labels"
+        }
+      },
+      "title": "Review",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "schema_version": {
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "image_id": {
+      "title": "Image Id",
+      "type": "string"
+    },
+    "collection_id": {
+      "title": "Collection Id",
+      "type": "string"
+    },
+    "relative_path": {
+      "title": "Relative Path",
+      "type": "string"
+    },
+    "ingest": {
+      "$ref": "#/$defs/IngestInfo"
+    },
+    "context": {
+      "additionalProperties": true,
+      "title": "Context",
+      "type": "object"
+    },
+    "models": {
+      "$ref": "#/$defs/Models",
+      "default": {
+        "caption": {
+          "confidence": null,
+          "name": null,
+          "output": null,
+          "run_id": null,
+          "version": null
+        },
+        "tags": {
+          "labels": [],
+          "name": null,
+          "run_id": null,
+          "version": null
+        },
+        "nsfw": {
+          "class": null,
+          "name": null,
+          "run_id": null,
+          "score": null,
+          "version": null
+        },
+        "ocr": {
+          "blocks": null,
+          "name": null,
+          "run_id": null,
+          "text": null,
+          "version": null
+        },
+        "style": {
+          "anime_score": null,
+          "art_style": null,
+          "name": null,
+          "run_id": null,
+          "version": null
+        },
+        "places": {
+          "name": null,
+          "run_id": null,
+          "topk": [],
+          "version": null
+        },
+        "faces": {
+          "embeddings": null,
+          "name": null,
+          "num_faces": null,
+          "run_id": null,
+          "version": null
+        }
+      }
+    },
+    "fusion": {
+      "$ref": "#/$defs/Fusion",
+      "default": {
+        "policy_version": null,
+        "decisions": {}
+      }
+    },
+    "review": {
+      "$ref": "#/$defs/Review",
+      "default": {
+        "status": "auto_ok",
+        "flags": [],
+        "notes": "",
+        "history": [],
+        "gold_labels": null
+      }
+    },
+    "final": {
+      "$ref": "#/$defs/FinalFields",
+      "default": {
+        "caption": null,
+        "tags": [],
+        "entities": [],
+        "locales": []
+      }
+    },
+    "audit": {
+      "$ref": "#/$defs/Audit"
+    }
+  },
+  "required": [
+    "image_id",
+    "collection_id",
+    "relative_path",
+    "ingest",
+    "audit"
+  ],
+  "title": "ImageSidecar",
+  "type": "object"
+}

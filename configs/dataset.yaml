@@ -1,0 +1,7 @@
+dataset_root: "/ABSOLUTE/PATH/TO/DATASET"
+include_extensions: [".jpg",".jpeg",".png",".webp",".tif",".tiff",".bmp",".gif",".heic"]
+ignore_globs: ["**/.DS_Store","**/Thumbs.db","**/._*","**/~*"]
+sidecar_strategy: "next_to_image"   # or "mirror_tree"
+max_image_px: 16384                 # guardrail for absurdly large images
+fingerprint_head_bytes: 65536
+timezone: "UTC"
